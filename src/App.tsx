@@ -1,11 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import HomePage from "./pages/HomePage";
-import NotFountPage from "./pages/NotFound";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Layout from './pages/Layout';
+import NotFountPage from './pages/NotFound';
 import './styles/index.scss';
 
-const App = () => {
-  return (
+const App = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -14,7 +13,6 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
-}
+);
 
 export default App;

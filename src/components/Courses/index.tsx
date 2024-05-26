@@ -1,8 +1,8 @@
-import { memo } from 'react';
 import equals from 'array-equal';
-import type { Course as CourseData } from '../../api'
-import Course from "../Course";
-import './styles.scss'
+import { memo } from 'react';
+import type { Course as CourseData } from '../../api';
+import Course from '../Course';
+import './styles.scss';
 
 type CoursesProps = {
   courses: Omit<CourseData, 'tags'>[]
@@ -10,7 +10,9 @@ type CoursesProps = {
 
 const Courses = ({ courses }: CoursesProps) => (
   <div className="courses">
-    {courses.map(({ id, name, image, bgColor }) => (
+    {courses.map(({
+      id, name, image, bgColor,
+    }) => (
       <Course
         key={id}
         name={name}
@@ -19,8 +21,6 @@ const Courses = ({ courses }: CoursesProps) => (
       />
     ))}
   </div>
-)
+);
 
-export default memo(Courses, (prevProps, nextProps) => {
-  return equals(prevProps.courses, nextProps.courses);
-});
+export default memo(Courses, (prevProps, nextProps) => equals(prevProps.courses, nextProps.courses));

@@ -1,6 +1,6 @@
-import { memo } from 'react'
-import type { Course as CourseData } from '../../api'
-import './styles.scss'
+import { memo } from 'react';
+import type { Course as CourseData } from '../../api';
+import './styles.scss';
 
 type CourseProps = Omit<CourseData, 'id'|'tags'>
 
@@ -11,6 +11,6 @@ const Course = ({ name, image, bgColor }: CourseProps) => (
     </div>
     <div className="course__name">{name}</div>
   </div>
-)
+);
 
 export default memo(Course);

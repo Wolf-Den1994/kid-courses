@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import './styles.scss'
+import './styles.scss';
 
 type TopicProps = {
   tag: string;
@@ -14,8 +14,6 @@ const Topic = ({ tag, isActive, onClick }: TopicProps) => (
   >
     {tag}
   </button>
-)
+);
 
-export default memo(Topic, (prevProps, nextProps) => {
-  return prevProps.isActive === nextProps.isActive;
-});
+export default memo(Topic, (prevProps, nextProps) => prevProps.isActive === nextProps.isActive);

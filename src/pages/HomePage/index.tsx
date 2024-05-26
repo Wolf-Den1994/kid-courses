@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef, useMemo, useCallback } from "react"
-import { Course as CourseData, getAllCourses } from "../../api";
-import { ALL } from "../../helpers";
-import Courses from "../../components/Courses";
-import Topics from "../../components/Topics";
-import Error from "../../components/Error";
-import Loading from "../../components/Loading";
+import {
+  useEffect, useState, useRef, useMemo, useCallback,
+} from 'react';
+import { Course as CourseData, getAllCourses } from '../../api';
+import Courses from '../../components/Courses';
+import Error from '../../components/Error';
+import Loading from '../../components/Loading';
+import Topics from '../../components/Topics';
+import { ALL } from '../../helpers';
 
 const HomePage = () => {
   const [courses, setCourses] = useState<CourseData[]>([]);
@@ -12,30 +14,30 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  const storeData = useRef<CourseData[]>([])
+  const storeData = useRef<CourseData[]>([]);
 
   const fetchData = async () => {
     const data = await getAllCourses();
 
     if (!data) {
       setIsError(true);
-      return
+      return;
     }
 
     setCourses(data);
     storeData.current = data;
     setIsLoading(false);
-  }
+  };
 
   const filterData = () => {
     if (activeTag === ALL) {
       setCourses(storeData.current);
-      return
+      return;
     }
 
     const filteredCourses = storeData.current.filter(({ tags }) => tags.includes(activeTag));
     setCourses(filteredCourses);
-  }
+  };
 
   const allTags = useMemo(() => {
     const allTopics = courses.reduce<string[]>((acc, topic) => [...acc, ...topic.tags], [ALL]);
@@ -50,14 +52,14 @@ const HomePage = () => {
 
   useEffect(() => {
     filterData();
-  }, [activeTag])
+  }, [activeTag]);
 
   if (isError) {
-    return <Error />
+    return <Error />;
   }
 
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
@@ -65,7 +67,7 @@ const HomePage = () => {
       <Topics allTags={allTags} activeTag={activeTag} onClickTag={handleClick} />
       <Courses courses={courses} />
     </>
-  )
-}
+  );
+};
 
 export default HomePage;

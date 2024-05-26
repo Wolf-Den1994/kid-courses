@@ -14,7 +14,7 @@ export const getAllCourses = async (): Promise<Course[]|null> => {
 
     return data;
   } catch (err) {
-    console.error('Error getAllData:', err)
+    console.error('Error getAllData:', err);
     return null;
   }
-}
+};

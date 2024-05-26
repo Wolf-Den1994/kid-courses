@@ -1,5 +1,5 @@
 import Topic from '../Topic';
-import './styles.scss'
+import './styles.scss';
 
 type TopicsProps = {
   allTags: string[];
@@ -18,6 +18,6 @@ const Topics = ({ allTags, activeTag, onClickTag }: TopicsProps) => (
       />
     ))}
   </div>
-)
+);
 
 export default Topics;
