@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ResponseStatus } from '../../helpers';
 import type { Course } from './model';
 
-export const getAllCourses = async (): Promise<Course[]|null> => {
+export const getAllCourses = async (): Promise<Course[] | null> => {
   try {
     const baseUrl = import.meta.env.VITE_BASE_URL;
 

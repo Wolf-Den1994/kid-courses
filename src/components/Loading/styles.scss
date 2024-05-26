@@ -12,7 +12,7 @@
 
 .loader:before,
 .loader:after {
-  content: "";
+  content: '';
   position: absolute;
   background: inherit;
   bottom: 100%;
@@ -32,41 +32,39 @@
 }
 
 @keyframes l19-0 {
-
   0%,
   30% {
-    transform: translateY(0) scaleY(1)
+    transform: translateY(0) scaleY(1);
   }
 
   49.99% {
-    transform: translateY(-50%) scaleY(1)
+    transform: translateY(-50%) scaleY(1);
   }
 
   50% {
-    transform: translateY(-50%) scaleY(-1)
+    transform: translateY(-50%) scaleY(-1);
   }
 
   70%,
   100% {
-    transform: translateY(-100%) scaleY(-1)
+    transform: translateY(-100%) scaleY(-1);
   }
 }
 
 @keyframes l19-1 {
-
   0%,
   10%,
   90%,
   100% {
-    transform: scale(var(--s, 1)) translate(0)
+    transform: scale(var(--s, 1)) translate(0);
   }
 
   30%,
   70% {
-    transform: scale(var(--s, 1)) translate(20px)
+    transform: scale(var(--s, 1)) translate(20px);
   }
 
   50% {
-    transform: scale(var(--s, 1)) translate(20px, 20px)
+    transform: scale(var(--s, 1)) translate(20px, 20px);
   }
 }

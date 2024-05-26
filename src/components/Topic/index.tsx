@@ -5,13 +5,10 @@ type TopicProps = {
   tag: string;
   isActive: boolean;
   onClick: () => void;
-}
+};
 
 const Topic = ({ tag, isActive, onClick }: TopicProps) => (
-  <button
-    className={`topic ${isActive ? 'topic_active' : ''}`}
-    onClick={onClick}
-  >
+  <button className={`topic ${isActive ? 'topic_active' : ''}`} onClick={onClick}>
     {tag}
   </button>
 );

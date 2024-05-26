@@ -1,58 +1,18 @@
-import {
-  useEffect, useState, useRef, useMemo, useCallback,
-} from 'react';
-import { Course as CourseData, getAllCourses } from '../../api';
+import { useState, useCallback } from 'react';
 import Courses from '../../components/Courses';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
 import Topics from '../../components/Topics';
 import { ALL } from '../../helpers';
+import { useFetchData, useFilterCourses, useTags } from '../../hooks';
 
 const HomePage = () => {
-  const [courses, setCourses] = useState<CourseData[]>([]);
   const [activeTag, setActiveTag] = useState(ALL);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  const storeData = useRef<CourseData[]>([]);
-
-  const fetchData = async () => {
-    const data = await getAllCourses();
-
-    if (!data) {
-      setIsError(true);
-      return;
-    }
-
-    setCourses(data);
-    storeData.current = data;
-    setIsLoading(false);
-  };
-
-  const filterData = () => {
-    if (activeTag === ALL) {
-      setCourses(storeData.current);
-      return;
-    }
-
-    const filteredCourses = storeData.current.filter(({ tags }) => tags.includes(activeTag));
-    setCourses(filteredCourses);
-  };
-
-  const allTags = useMemo(() => {
-    const allTopics = courses.reduce<string[]>((acc, topic) => [...acc, ...topic.tags], [ALL]);
-    return [...new Set(allTopics)];
-  }, [storeData.current]);
+  const { courses, setCourses, isLoading, isError, storeData } = useFetchData();
+  useFilterCourses(storeData, activeTag, setCourses);
+  const allTags = useTags(storeData, courses);
 
   const handleClick = useCallback((tag: string) => setActiveTag(tag), []);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    filterData();
-  }, [activeTag]);
 
   if (isError) {
     return <Error />;

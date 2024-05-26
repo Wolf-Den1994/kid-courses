@@ -5,14 +5,14 @@ import NotFountPage from './pages/NotFound';
 import './styles/index.scss';
 
 const App = () => (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="*" element={<NotFountPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="*" element={<NotFountPage />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
 );
 
 export default App;

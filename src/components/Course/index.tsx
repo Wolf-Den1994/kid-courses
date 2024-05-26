@@ -2,7 +2,7 @@ import { memo } from 'react';
 import type { Course as CourseData } from '../../api';
 import './styles.scss';
 
-type CourseProps = Omit<CourseData, 'id'|'tags'>
+type CourseProps = Omit<CourseData, 'id' | 'tags'>;
 
 const Course = ({ name, image, bgColor }: CourseProps) => (
   <div className="course">

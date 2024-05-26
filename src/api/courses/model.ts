@@ -4,4 +4,4 @@ export type Course = {
   image: string;
   bgColor: string;
   tags: string[];
-}
+};

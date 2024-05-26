@@ -5,20 +5,13 @@ import Course from '../Course';
 import './styles.scss';
 
 type CoursesProps = {
-  courses: Omit<CourseData, 'tags'>[]
-}
+  courses: Omit<CourseData, 'tags'>[];
+};
 
 const Courses = ({ courses }: CoursesProps) => (
   <div className="courses">
-    {courses.map(({
-      id, name, image, bgColor,
-    }) => (
-      <Course
-        key={id}
-        name={name}
-        image={image}
-        bgColor={bgColor}
-      />
+    {courses.map(({ id, name, image, bgColor }) => (
+      <Course key={id} name={name} image={image} bgColor={bgColor} />
     ))}
   </div>
 );
