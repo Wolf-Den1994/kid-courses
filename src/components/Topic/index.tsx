@@ -1,22 +1,21 @@
+import { memo } from 'react';
 import './styles.scss'
 
 type TopicProps = {
   tag: string;
-  active: string;
+  isActive: boolean;
   onClick: () => void;
 }
 
-const Topic = ({ tag, active, onClick }: TopicProps) => {
-  const isActive = active === tag ? 'topic_active' : ''
+const Topic = ({ tag, isActive, onClick }: TopicProps) => (
+  <button
+    className={`topic ${isActive ? 'topic_active' : ''}`}
+    onClick={onClick}
+  >
+    {tag}
+  </button>
+)
 
-  return (
-    <button
-      className={`topic ${isActive}`}
-      onClick={onClick}
-    >
-      {tag}
-    </button>
-  )
-}
-
-export default Topic;
+export default memo(Topic, (prevProps, nextProps) => {
+  return prevProps.isActive === nextProps.isActive;
+});

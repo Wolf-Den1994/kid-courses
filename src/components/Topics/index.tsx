@@ -7,19 +7,17 @@ type TopicsProps = {
   onClickTag: (tag: string) => void;
 }
 
-const Topics = ({ allTags, activeTag, onClickTag }: TopicsProps) => {
-  return (
-    <div className="topics">
-      {allTags.map((tag) => (
-        <Topic
-          key={tag}
-          tag={tag}
-          active={activeTag}
-          onClick={() => onClickTag(tag)}
-        />
-      ))}
-    </div>
-  )
-}
+const Topics = ({ allTags, activeTag, onClickTag }: TopicsProps) => (
+  <div className="topics">
+    {allTags.map((tag) => (
+      <Topic
+        key={tag}
+        tag={tag}
+        isActive={activeTag === tag}
+        onClick={() => onClickTag(tag)}
+      />
+    ))}
+  </div>
+)
 
 export default Topics;

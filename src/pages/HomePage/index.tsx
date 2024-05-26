@@ -1,22 +1,18 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useMemo, useCallback } from "react"
 import { Course as CourseData, getAllCourses } from "../../api";
-import { ALL } from "../../helpers/constants";
+import { ALL } from "../../helpers";
 import Courses from "../../components/Courses";
 import Topics from "../../components/Topics";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 
 const HomePage = () => {
   const [courses, setCourses] = useState<CourseData[]>([]);
-  const [isError, setIsError] = useState(false);
-  const [allTags, setAllTags] = useState<string[]>([]);
   const [activeTag, setActiveTag] = useState(ALL);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const storeData = useRef<CourseData[]>([])
-
-  const collectTopics = (data: CourseData[]) => {
-    const allTopics = data.reduce<string[]>((acc, topic) => [...acc, ...topic.tags], [ALL]);
-    const uniqTopics = [...new Set(allTopics)];
-    setAllTags(uniqTopics);
-  }
 
   const fetchData = async () => {
     const data = await getAllCourses();
@@ -26,9 +22,9 @@ const HomePage = () => {
       return
     }
 
-    collectTopics(data);
     setCourses(data);
     storeData.current = data;
+    setIsLoading(false);
   }
 
   const filterData = () => {
@@ -41,6 +37,13 @@ const HomePage = () => {
     setCourses(filteredCourses);
   }
 
+  const allTags = useMemo(() => {
+    const allTopics = courses.reduce<string[]>((acc, topic) => [...acc, ...topic.tags], [ALL]);
+    return [...new Set(allTopics)];
+  }, [storeData.current]);
+
+  const handleClick = useCallback((tag: string) => setActiveTag(tag), []);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -50,14 +53,16 @@ const HomePage = () => {
   }, [activeTag])
 
   if (isError) {
-    return (
-      <div>Something went wrong :\</div>
-    )
+    return <Error />
+  }
+
+  if (isLoading) {
+    return <Loading />
   }
 
   return (
     <>
-      <Topics allTags={allTags} activeTag={activeTag} onClickTag={(tag) => setActiveTag(tag)} />
+      <Topics allTags={allTags} activeTag={activeTag} onClickTag={handleClick} />
       <Courses courses={courses} />
     </>
   )
