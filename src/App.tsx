@@ -1,7 +1,10 @@
-const App = () => {
-  return (
-    <div>s</div>
-  )
-}
+import Courses from "./components/Courses";
+import './styles.scss';
 
-export default App
+const App = () => (
+  <div className="wrapper">
+    <Courses />
+  </div>
+);
+
+export default App;

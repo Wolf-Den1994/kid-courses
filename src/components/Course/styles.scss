@@ -1,0 +1,39 @@
+.course {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+
+  min-width: 177px;
+  min-height: 210px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 10px 13px -4px rgba(35, 35, 95, 0.19);
+  border-radius: 0 0 18px 18px;
+
+  &__picture {
+    border-radius: 18px 18px 0 0;
+
+    padding: 9px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    width: 144px;
+    height: 144px;
+    display: block;
+  }
+
+  &__name {
+    padding: 12px 18px 18px;
+
+    font-family: 'Nunito';
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 18px;
+    color: #39414B;
+  }
+}
