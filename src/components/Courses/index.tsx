@@ -1,36 +1,15 @@
-import { useEffect, useState } from "react"
-import { Course as CourseData, getAllCourses } from "../../api";
+import type { Course as CourseData } from '../../api'
 import Course from "../Course";
 import './styles.scss'
 
-const Courses = () => {
-  const [courses, setCourses] = useState<CourseData[]>([]);
-  const [isError, setIsError] = useState(false);
+type CoursesProps = {
+  courses: Omit<CourseData, 'tags'>[]
+}
 
-  const fetchData = async () => {
-    const data = await getAllCourses();
-
-    if (!data) {
-      setIsError(true);
-      return
-    }
-
-    setCourses(data)
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [])
-
-  if (isError) {
-    return (
-      <div>Something went wrong :\</div>
-    )
-  }
-
+const Courses = ({ courses }: CoursesProps) => {
   return (
     <div className="courses">
-      {courses.map(({ id, name, image, bgColor, tags }) => (
+      {courses.map(({ id, name, image, bgColor }) => (
         <Course
           key={id}
           name={name}
