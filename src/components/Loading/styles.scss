@@ -1,9 +1,11 @@
+@import '../../styles/variables';
+
 .loader {
   margin-top: 160px;
 
   width: 140px;
   height: 70px;
-  background: orange;
+  background: $color-primary;
   position: relative;
   animation: l19-0 1.5s infinite linear;
 }

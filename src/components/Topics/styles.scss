@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .topics {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,6 @@
 
   min-width: 264px;
   width: 264px;
-  border: 1px solid #CFCFE4;
+  border: 1px solid $color-additional;
   border-radius: 18px;
 }

@@ -1,5 +1,6 @@
-.error {
-  font: 800 18px/18px "Nunito", sans-serif;
+@import '../../styles/variables';
 
-  color: #39414B;
+.error {
+  font: $font;
+  color: $color-text;
 }

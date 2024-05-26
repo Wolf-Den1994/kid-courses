@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .course {
   display: flex;
   flex-direction: column;
@@ -7,9 +9,15 @@
   min-width: 177px;
   min-height: 210px;
 
-  background: #FFFFFF;
-  box-shadow: 0px 10px 13px -4px rgba(35, 35, 95, 0.19);
+  background: $color-display;
+  box-shadow: 0px 10px 13px -4px $color-shadow;
   border-radius: 0 0 18px 18px;
+
+  color: $color-text;
+
+  cursor: pointer;
+  transition: $transition-color, $transition-transform;
+  will-change: transform;
 
   &__picture {
     border-radius: 18px 18px 0 0;
@@ -31,7 +39,11 @@
     align-self: flex-start;
     padding: 12px 18px 18px;
 
-    font: 800 18px/18px "Nunito", sans-serif;
-    color: #39414B;
+    font: $font;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+    color: lighten($color-primary, $change);
   }
 }
