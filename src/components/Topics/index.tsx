@@ -1,19 +1,22 @@
-import { useState } from 'react';
 import Topic from '../Topic';
-import { ALL } from '../../helpers/constants';
 import './styles.scss'
 
 type TopicsProps = {
   allTags: string[];
+  activeTag: string;
+  onClickTag: (tag: string) => void;
 }
 
-const Topics = ({ allTags }: TopicsProps) => {
-  const [activeTag, setActiveTag] = useState(ALL);
-
+const Topics = ({ allTags, activeTag, onClickTag }: TopicsProps) => {
   return (
     <div className="topics">
       {allTags.map((tag) => (
-        <Topic key={tag} tag={tag} active={activeTag} />
+        <Topic
+          key={tag}
+          tag={tag}
+          active={activeTag}
+          onClick={() => onClickTag(tag)}
+        />
       ))}
     </div>
   )
