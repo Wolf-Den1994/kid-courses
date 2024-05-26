@@ -1,30 +1,79 @@
-# React + TypeScript + Vite
+# Kid courses
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [Deploy](https://wolf-den1994-kid-courses.netlify.app/)
 
-Currently, two official plugins are available:
+> Implemented data retrieval from API, data rendering and filtering
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> Render an application with `Pixel Perfect`
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+- Git - [Download & Install Git](https://git-scm.com/downloads).
+- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Downloading
+
+```
+git clone https://github.com/Wolf-Den1994/kid-courses
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Go to project root directory
+
+```
+cd kid-courses
+```
+
+## Installing NPM modules
+
+```
+npm ci
+```
+
+## Change name file
+
+```
+.env.example -> .env
+```
+add variables
+
+## Running application
+
+```
+npm run dev
+```
+
+After starting the app, you can open it
+
+### Auto-fix and format
+
+```
+npm run lint
+```
+
+```
+npm run lint:fix
+```
+
+```
+npm run format
+```
+
+---
+
+## Used technologies:
+- TypeScript 5
+- React 18
+- React Router 6
+- SCSS(sass)
+- Reset CSS
+- Axios
+- Vite
+- prettier
+- node.js version: 20 LTS
+
+---
+
+## Authors:
+ *[Denis Karazan](https://github.com/Wolf-Den1994)*
