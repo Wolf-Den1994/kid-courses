@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useRef, useState, Dispatch, MutableRefObject, SetStateAction } from 'react';
+import { useEffect, useMemo, useRef, useState, MutableRefObject } from 'react';
 import { Course as CourseData, getAllCourses } from '../api';
 import { ALL } from '../helpers';
 
 export const useFetchData = () => {
-  const [courses, setCourses] = useState<CourseData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -17,7 +16,6 @@ export const useFetchData = () => {
       return;
     }
 
-    setCourses(data);
     storeData.current = data;
     setIsLoading(false);
   };
@@ -26,29 +24,19 @@ export const useFetchData = () => {
     fetchData();
   }, []);
 
-  return { courses, setCourses, isLoading, isError, storeData };
+  return { isLoading, isError, storeData };
 };
 
-export const useFilterCourses = (
-  storeData: MutableRefObject<CourseData[]>,
-  activeTag: string,
-  setCourses: Dispatch<SetStateAction<CourseData[]>>,
-) => {
-  useEffect(() => {
+export const useFilterCourses = (storeData: MutableRefObject<CourseData[]>, activeTag: string) =>
+  useMemo(() => {
     if (activeTag === ALL) {
-      setCourses(storeData.current);
-    } else {
-      const filteredCourses = storeData.current.filter(({ tags }) => tags.includes(activeTag));
-      setCourses(filteredCourses);
+      return storeData.current;
     }
-  }, [activeTag]);
-};
+    return storeData.current.filter(({ tags }) => tags.includes(activeTag));
+  }, [activeTag, storeData.current]);
 
-export const useTags = (storeData: MutableRefObject<CourseData[]>, courses: CourseData[]) => {
-  const allTags = useMemo(() => {
+export const useTags = (storeData: MutableRefObject<CourseData[]>, courses: CourseData[]) =>
+  useMemo(() => {
     const allTopics = courses.reduce<string[]>((acc, topic) => [...acc, ...topic.tags], [ALL]);
     return [...new Set(allTopics)];
   }, [storeData.current]);
-
-  return allTags;
-};

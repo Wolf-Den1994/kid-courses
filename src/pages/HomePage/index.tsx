@@ -8,9 +8,10 @@ import { useFetchData, useFilterCourses, useTags } from '../../hooks';
 
 const HomePage = () => {
   const [activeTag, setActiveTag] = useState(ALL);
-  const { courses, setCourses, isLoading, isError, storeData } = useFetchData();
-  useFilterCourses(storeData, activeTag, setCourses);
-  const allTags = useTags(storeData, courses);
+  const { isLoading, isError, storeData } = useFetchData();
+  const filteredCourses = useFilterCourses(storeData, activeTag);
+
+  const allTags = useTags(storeData, filteredCourses);
 
   const handleClick = useCallback((tag: string) => setActiveTag(tag), []);
 
@@ -25,7 +26,7 @@ const HomePage = () => {
   return (
     <>
       <Topics allTags={allTags} activeTag={activeTag} onClickTag={handleClick} />
-      <Courses courses={courses} />
+      <Courses courses={filteredCourses} />
     </>
   );
 };
